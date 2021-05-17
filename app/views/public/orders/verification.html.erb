@@ -1,0 +1,44 @@
+ <h2>注文情報確認</h2>
+
+  <% @cart_items.each do |cart_item| %>
+   <div class="card mb-3">
+    <%= attachment_image_tag cart_item.item, :image %>
+     <div class="card-body pb-2">
+      <h5 class="card-title"><%= cart_item.item.name %></h5>
+      <p class="card-text"><%= cart_item.item.excluding_tax_price %>円</p>
+      <div>個数: <%= cart_item.amount %>点</div>
+     </div>
+   </div>
+  <% end %>
+
+  <% @cart_items.each do |cart_item| %>
+      <div class="cartitem-area clearfix border-bottom border-dark p-3">
+        <div class="cartitem-figure float-left" style="width:35%">
+          <%= attachment_image_tag cart_item.item %>
+        </div>
+        <div class="cartitem-description float-right" style="width:60%">
+          <h4 class="cartitem-name p-3">
+            <%= cart_item.item.name %>
+          </h4>
+          <table class="table">
+            <tr>
+              <th>単価</th>
+              <th>数量</th>
+              <th>小計</th>
+            </tr>
+            <tr>
+              <td><%= cart_item.item.excluding_tax_price %></td>
+              <td><%= cart_item.amount %></td>
+              <td><%= cart_item.item.excluding_tax_price * cart_item.amount %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="border-top mt-3 pt-2 mb-1">支払方法<p class="text-right"><%= @payment_method %></p></div>
+    <h4 class="rounded mt-3 mb-3 p-2" style="background-color:#ddd;">お届け先</h4>
+    <p>〒<%= session[:customer]["postal_code"] %>
+         <%= session[:customer]["address"] %></p>
+
+      <%= link_to "注文を確定する", orders_thanks_path, class: "btn btn-primary mt-3" %>
