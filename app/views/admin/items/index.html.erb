@@ -1,0 +1,24 @@
+<h2>商品一覧</h2>
+<table class="table table-striped bg-light">
+<tr>
+  <th>商品名</th>
+  <th>商品説明</th>
+  <th>ジャンル</th>
+  <th>税抜価格</th>
+  <th>販売ステータス</th>
+</tr>
+<% @items.each do |item| %>
+  <tr>
+    <td><%= link_to item.name, admin_item_path(item) %></td>
+    <td><%= item.introduction %>
+    <td><%= item.genre.name %></td>
+    <td><%= item.excluding_tax_price %></td>
+    <td>
+      <% if item.is_active %>
+      販売中
+      <% else %>
+      販売停止中
+      <% end %>
+    </td>
+  </tr>
+<% end %>

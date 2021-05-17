@@ -1,0 +1,24 @@
+<h2>会員一覧</h2>
+
+<% @customers.each do |customer| %>
+
+<table>
+ <thead>
+  <tr>
+   <th>会員ID</th>
+   <th>氏名</th>
+   <th>メールアドレス</th>
+   <th>ステータス</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><%= link_to customer.id %></td>
+   <td><%= customer.last_name %><%= customer.first_name %></td>
+   <td><%= customer.email %></td>
+   <td><%= customer.is_deleted %></td>
+  </tr>
+ </tbody>
+</table>
+
+<% end %>

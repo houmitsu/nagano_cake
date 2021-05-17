@@ -1,0 +1,8 @@
+<div class="mt-4">本当に退会しますか？</div>
+
+<br>退会すると、会員登録情報や</br>
+<br>これまでの購入履歴が閲覧できなくなります。</br>
+<br>退会する場合は、「退会する」をクリックしてください。</br>
+
+<%= button_to '退会しない', customer_path, method: :get %>
+<%= button_to '退会する', customer_path(customer_user), method: :delete, confirm: "いいですか？" %>
