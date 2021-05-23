@@ -26,42 +26,35 @@ Rails.application.routes.draw do
   end
 
     #public
+  scope module: :public do
 
     #homes
-    root to: 'public/homes#top'
-    get '/about' => 'public/homes#about'
+    root to: 'homes#top'
+    get '/about' => 'homes#about'
 
     #addresses
-    get '/addresses' => 'public/addresses#index'
-    get '/addresses/:id/edit' => 'public/addresses#edit'
-    post '/addresses' => 'public/addresses#create'
-    patch '/addresses/:id' => 'public/addresses#update'
-    delete '/addresses/:id' => 'public/addresses#destroy'
+    resources :addresses, only:[:index, :edit, :create, :update, :destroy]
 
     #orders
-    get '/orders/thanks' => 'public/orders#thanks'
-    post '/orders/verification' => 'public/orders#verification'
-    post '/orders/confirmed' => 'public/orders#confirmed'
-    get '/orders' => 'public/orders#index'
-    get '/orders/new' => 'public/orders#new'
-    get '/orders/:id' => 'public/order#show'
+    get '/orders/thanks' => 'orders#thanks'
+    post '/orders/verification' => 'orders#verification'
+    resources :orders, only:[:index, :new, :show, :create]
 
     #cart_items
-    delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
-    get '/cart_items' => 'public/cart_items#index'
-    post '/cart_items' => 'public/cart_items#create'
-    patch '/cart_items/:id' => 'public/cart_items#update'
-    delete 'cart_items/:id' => 'public/cart_items#destroy'
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
+    resources :cart_items, only:[:index, :create, :update, :destroy]
 
     #customers
-    get '/customers/verification' => 'public/customers#verification'
-    patch '/customers/withdrawal' => 'public/customers#withdrawal'
-    get '/customers' => 'public/customers#show'
-    get '/customers/edit' => 'public/customers#edit'
-    patch '/customers' => 'public/customers#update'
+    get '/customers/verification' => 'customers#verification'
+    patch '/customers/withdrawal' => 'customers#withdrawal'
+    get '/customer/edit' => 'customers#edit', as: 'edit_customers'
+    patch '/customer' => 'customers#update', as: 'update_customers'
+    get '/customer' => 'customers#show', as: 'customers'
 
     #items
-    get '/items' => 'public/items#index'
-    get '/items/:id' => 'public/items#show'
+    get '/items' => 'items#index'
+    get '/items/:id' => 'items#show', as: 'items_show'
+
+  end
 
 end
