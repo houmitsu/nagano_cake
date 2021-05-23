@@ -1,16 +1,16 @@
 class Admin::OrdersController < ApplicationController
   def show
-    @order = order.find(params[:id])
-    @ordered_item = @order.ordered_items
+    @order = Order.find(params[:id])
+    @ordered_item = @order.order_details
     @total = 0
     @ordered_item.each do |ordered_item|
-    tol = ordered_item.item.non_taxed_price * ordered_item.quantity
+    tol = ordered_item.item.excluding_tax_price * ordered_item.amount
     @total += tol
     end
   end
 
   def update
-    @order = order.find(params[:id])
+    @order = Order.find(params[:id])
     if params[:order][:status] == "b"
       order.ordered_items.each do |ordered_item|
         ordered_item.production_status = "b"

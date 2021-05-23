@@ -1,5 +1,25 @@
-<br>ようこそ、ながのCAKEへ！</br>
-<br>このサイトは、ケーキ販売のECサイトになります。</br>
-<br>会員でない方も商品の閲覧はできますが、</br>
-<br>購入には会員登録が必要になります。</br>
+<div class="title">
+ <br>ようこそ、ながのCAKEへ！</br>
+ <br>このサイトは、ケーキ販売のECサイトになります。</br>
+ <br>会員でない方も商品の閲覧はできますが、</br>
+ <br>購入には会員登録が必要になります。</br>
+</div>
 
+<h2>新着商品</h2>
+
+ <div class="border mb-4 mx-auto" style="width:10%"></div>
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card mb-3">
+          <%= link_to attachment_image_tag(item, :image, format: 'jpeg', class: "bd-placeholder-img card-img-top", fallback: "no_img.jpg", height: "180"), items_show_path(item.id) %>
+          <div class="card-body">
+            <h5 class="card-title"><%= item.name %></h5>
+            <p class="card-text"><%= item.excluding_tax_price %>円</p>
+            <%= link_to "この商品を見る", items_show_path(item.id), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+ </div>

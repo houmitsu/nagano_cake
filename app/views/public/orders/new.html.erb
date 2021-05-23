@@ -1,7 +1,7 @@
 <h2 class="text-center">注文情報入力</h2>
 
+<%= form_with url: orders_verification_path, method: :post, local: true do |f| %>
 <div class="mx-auto w-50 border rounded bg-white p-3">
-<%= form_with url: orders_path, method: :post, local: true, do |f| %>
 
   <div class="form-group">
     <div class="lead mb-2">支払い方法</div>
@@ -44,4 +44,3 @@
 
     <%= f.submit "確認画面へ進む", class:"btn btn-primary btn-block btn-base-1 mt-20" %>
   <% end %>
-  </div>

@@ -7,7 +7,7 @@
           <div class="card-body">
             <h5 class="card-title"><%= item.name %></h5>
             <p class="card-text"><%= item.excluding_tax_price %>円</p>
-            <%= link_to "この商品を見る", items_path(item.id), class: "btn btn-primary" %>
+            <%= link_to "この商品を見る", items_show_path(item.id), class: "btn btn-primary" %>
           </div>
         </div>
       </div>
